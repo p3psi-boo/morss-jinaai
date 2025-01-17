@@ -6,24 +6,24 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:rssfake="http://purl.org/rss/1.0/"
-	>
+>
 
-	<xsl:output method="html"/>
+	<xsl:output method="html" />
 
 	<xsl:template match="/">
 		<html>
-		<head>
-			<title>RSS feed by morss</title>
-			<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
-			<meta name="robots" content="noindex" />
-			<link rel="shortcut icon" type="image/svg+xml" href="/logo.svg" sizes="any" />
+			<head>
+				<title>RSS feed by morss</title>
+				<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+				<meta name="robots" content="noindex" />
+				<link rel="shortcut icon" type="image/svg+xml" href="/logo.svg" sizes="any" />
 
-			<style type="text/css">
-				body * {
-					box-sizing:  border-box;
-				}
+				<style type="text/css">
+					body * {
+					box-sizing: border-box;
+					}
 
-				body {
+					body {
 					overflow-wrap: anywhere;
 					word-wrap: anywhere;
 					word-break: break-word;
@@ -31,21 +31,21 @@
 					font-family: sans-serif;
 
 					-webkit-tap-highlight-color: transparent; /* safari work around */
-				}
+					}
 
-				input, select {
+					input, select {
 					font-family: inherit;
 					font-size: inherit;
 					text-align: inherit;
-				}
+					}
 
-				header {
+					header {
 					text-align: justify;
 					text-align-last: center;
 					border-bottom: 1px solid silver;
-				}
+					}
 
-				.input-combo {
+					.input-combo {
 					display: flex;
 					flex-flow: row;
 					align-items: stretch;
@@ -58,16 +58,16 @@
 
 					padding: .5em .5em;
 					background-color: #FFFAF4;
-				}
+					}
 
-				.input-combo * {
+					.input-combo * {
 					display: inline-block;
 					line-height: 2em;
 					border: 0;
 					background: transparent;
-				}
+					}
 
-				.input-combo > :not(.button) {
+					.input-combo > :not(.button) {
 					max-width: 100%;
 					flex-grow: 1;
 					flex-shrink 0;
@@ -75,9 +75,9 @@
 					white-space: nowrap;
 					text-overflow: ellipsis;
 					overflow: hidden;
-				}
+					}
 
-				.input-combo .button {
+					.input-combo .button {
 					flex-grow: 0;
 					flex-shrink 1;
 
@@ -86,14 +86,14 @@
 					text-align: center;
 					border-left: 1px solid silver;
 					color: #06f;
-				}
+					}
 
-				[onclick_title] {
+					[onclick_title] {
 					cursor: pointer;
 					position: relative;
-				}
+					}
 
-				[onclick_title]::before {
+					[onclick_title]::before {
 					opacity: 0;
 
 					content: attr(onclick_title);
@@ -109,148 +109,172 @@
 
 					border-radius: 0.5em;
 					padding: 0 1em;
-				}
+					}
 
-				[onclick_title]:not(:active)::before {
+					[onclick_title]:not(:active)::before {
 					transition: opacity 1s ease-in-out;
-				}
+					}
 
-				[onclick_title]:active::before {
+					[onclick_title]:active::before {
 					opacity: 1;
-				}
+					}
 
-				header > form {
+					header > form {
 					margin: 1%;
-				}
+					}
 
-				header a {
+					header a {
 					text-decoration: inherit;
 					color: #FF7B0A;
 					font-weight: bold;
-				}
+					}
 
-				.item {
+					.item {
 					background-color: #FFFAF4;
 					border: 1px solid silver;
 					margin: 1%;
 					max-width: 100%;
-				}
+					}
 
-				.item > * {
+					.item > * {
 					padding: 1%;
-				}
+					}
 
-				.item > *:empty {
+					.item > *:empty {
 					display: none;
-				}
+					}
 
-				.item > :not(:last-child) {
+					.item > :not(:last-child) {
 					border-bottom: 1px solid silver;
-				}
+					}
 
-				.item > a {
+					.item > a {
 
 					display: block;
 					font-weight: bold;
 					font-size: 1.5em;
-				}
+					}
 
-				.desc, .content {
+					.desc, .content {
 					overflow: hidden;
-				}
+					}
 
-				.desc *, .content * {
+					.desc *, .content * {
 					max-width: 100%;
-				}
-			</style>
-		</head>
+					}
+				</style>
+			</head>
 
-		<body>
-			<header>
-				<h1>RSS feed by morss</h1>
+			<body>
+				<header>
+					<h1>RSS feed by morss</h1>
 
-				<p>Your RSS feed is <strong style="color: green">ready</strong>. You
-				can enter the following url in your newsreader:</p>
+					<p>Your RSS feed is <strong style="color: green">ready</strong>. You can enter
+		the following url in your newsreader:</p>
 
-				<div class="input-combo">
-					<input id="url" readonly="readonly"/>
-					<span class="button" onclick="copy_link()" title="Copy" onclick_title="Copied">
-						<svg width="16px" height="16px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" d="M4 1.5H3a2 2 0 00-2 2V14a2 2 0 002 2h10a2 2 0 002-2V3.5a2 2 0 00-2-2h-1v1h1a1 1 0 011 1V14a1 1 0 01-1 1H3a1 1 0 01-1-1V3.5a1 1 0 011-1h1v-1z" clip-rule="evenodd"/>
-							<path fill-rule="evenodd" d="M9.5 1h-3a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5zm-3-1A1.5 1.5 0 005 1.5v1A1.5 1.5 0 006.5 4h3A1.5 1.5 0 0011 2.5v-1A1.5 1.5 0 009.5 0h-3z" clip-rule="evenodd"/>
-						</svg>
-					</span>
+					<div class="input-combo">
+						<input id="url" readonly="readonly" />
+						<span class="button" onclick="copy_link()" title="Copy"
+							onclick_title="Copied">
+							<svg width="16px" height="16px" viewBox="0 0 16 16" fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M4 1.5H3a2 2 0 00-2 2V14a2 2 0 002 2h10a2 2 0 002-2V3.5a2 2 0 00-2-2h-1v1h1a1 1 0 011 1V14a1 1 0 01-1 1H3a1 1 0 01-1-1V3.5a1 1 0 011-1h1v-1z"
+									clip-rule="evenodd" />
+								<path fill-rule="evenodd"
+									d="M9.5 1h-3a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5zm-3-1A1.5 1.5 0 005 1.5v1A1.5 1.5 0 006.5 4h3A1.5 1.5 0 0011 2.5v-1A1.5 1.5 0 009.5 0h-3z"
+									clip-rule="evenodd" />
+							</svg>
+						</span>
+					</div>
+
+					<form onchange="open_feed()"> Parser engine: <select>
+							<option value=":engine=lxml">lxml</option>
+							<option value=":engine=jina">Jina Reader</option>
+						</select>
+						<span
+							class="jina-format-select" style="display: none">
+							and format:
+							<select>
+								<option value=":jina_format=markdown">Markdown</option>
+								<option value=":jina_format=html">HTML</option>
+							</select>
+						</span>
+						<br />
+		More options: Output the <select>
+							<option value="">full-text</option>
+							<option value=":proxy">original</option>
+							<option value=":clip"
+								title="original + full-text: keep the original description above the full article. Useful for reddit feeds for example, to keep the comment links">combined
+		(?)</option>
+						</select> feed as <select>
+							<option value="">RSS</option>
+							<option value=":format=json:cors">JSON</option>
+							<option value=":format=html">HTML</option>
+							<option value=":format=csv">CSV</option>
+						</select>
+		using the <select>
+							<option value="">standard</option>
+							<option value=":firstlink"
+								title="Pull the article from the first available link in the description, instead of the standard link. Useful for Twitter feeds for example, to get the articles referred to in tweets rather than the tweet itself">first
+		(?)</option>
+						</select> link of the <select>
+							<option value="">first</option>
+							<option value=":order=newest"
+								title="Select feed items by publication date (instead of appearing order)">newest
+		(?)</option>
+							<option value=":order=last">last</option>
+							<option value=":order=oldest">oldest</option>
+						</select>
+		items and <select>
+							<option value="">keep</option>
+							<option value=":nolink:noref">remove</option>
+						</select>
+		links <input type="hidden" value="" name="extra_options" />
+					</form>
+
+					<p>You can find a <em>preview</em> of the feed below. You need a <em>feed reader</em>
+		for optimal use</p>
+					<p>Click <a href="/">here</a> to go back to morss and/or to use the tool on
+		another feed</p>
+				</header>
+
+				<div id="header" dir="auto">
+					<h1>
+						<xsl:value-of
+							select="rdf:RDF/rssfake:channel/rssfake:title|rss/channel/title|atom:feed/atom:title|atom03:feed/atom03:title" />
+					</h1>
+
+					<p>
+						<xsl:value-of
+							select="rdf:RDF/rssfake:channel/rssfake:description|rss/channel/description|atom:feed/atom:subtitle|atom03:feed/atom03:subtitle" />
+					</p>
 				</div>
 
-				<form onchange="open_feed()">
-					More options: Output the 
-					<select>
-						<option value="">full-text</option>
-						<option value=":proxy">original</option>
-						<option value=":clip" title="original + full-text: keep the original description above the full article. Useful for reddit feeds for example, to keep the comment links">combined (?)</option>
-					</select>
-					feed as 
-					<select>
-						<option value="">RSS</option>
-						<option value=":format=json:cors">JSON</option>
-						<option value=":format=html">HTML</option>
-						<option value=":format=csv">CSV</option>
-					</select>
-					using the 
-					<select>
-						<option value="">standard</option>
-						<option value=":firstlink" title="Pull the article from the first available link in the description, instead of the standard link. Useful for Twitter feeds for example, to get the articles referred to in tweets rather than the tweet itself">first (?)</option>
-					</select>
-					link of the 
-					<select>
-						<option value="">first</option>
-						<option value=":order=newest" title="Select feed items by publication date (instead of appearing order)">newest (?)</option>
-						<option value=":order=last">last</option>
-						<option value=":order=oldest">oldest</option>
-					</select>
-					items and 
-					<select>
-						<option value="">keep</option>
-						<option value=":nolink:noref">remove</option>
-					</select>
-					links
-					<input type="hidden" value="" name="extra_options"/>
-				</form>
+				<div id="content">
+					<xsl:for-each
+						select="rdf:RDF/rssfake:channel/rssfake:item|rss/channel/item|atom:feed/atom:entry|atom03:feed/atom03:entry">
+						<div class="item" dir="auto">
+							<a target="_blank">
+								<xsl:attribute name="href"><xsl:value-of
+										select="rssfake:link|link|atom:link/@href|atom03:link/@href" /></xsl:attribute>
+								<xsl:value-of select="rssfake:title|title|atom:title|atom03:title" />
+							</a>
 
-				<p>You can find a <em>preview</em> of the feed below. You need a <em>feed reader</em> for optimal use</p>
-				<p>Click <a href="/">here</a> to go back to morss and/or to use the tool on another feed</p>
-			</header>
+							<div class="desc">
+								<xsl:copy-of
+									select="rssfake:description|description|atom:summary|atom03:summary" />
+							</div>
 
-			<div id="header" dir="auto">
-				<h1>
-					<xsl:value-of select="rdf:RDF/rssfake:channel/rssfake:title|rss/channel/title|atom:feed/atom:title|atom03:feed/atom03:title"/>
-				</h1>
-
-				<p>
-					<xsl:value-of select="rdf:RDF/rssfake:channel/rssfake:description|rss/channel/description|atom:feed/atom:subtitle|atom03:feed/atom03:subtitle"/>
-				</p>
-			</div>
-
-			<div id="content">
-				<xsl:for-each select="rdf:RDF/rssfake:channel/rssfake:item|rss/channel/item|atom:feed/atom:entry|atom03:feed/atom03:entry">
-					<div class="item" dir="auto">
-						<a target="_blank"><xsl:attribute name="href"><xsl:value-of select="rssfake:link|link|atom:link/@href|atom03:link/@href"/></xsl:attribute>
-								<xsl:value-of select="rssfake:title|title|atom:title|atom03:title"/>
-						</a>
-
-						<div class="desc">
-							<xsl:copy-of select="rssfake:description|description|atom:summary|atom03:summary"/>
+							<div class="content">
+								<xsl:copy-of select="content:encoded|atom:content|atom03:content" />
+							</div>
 						</div>
+					</xsl:for-each>
+				</div>
 
-						<div class="content">
-							<xsl:copy-of select="content:encoded|atom:content|atom03:content"/>
-						</div>
-					</div>
-				</xsl:for-each>
-			</div>
-
-			<script>
-			//<![CDATA[
+				<script>
+					//<![CDATA[
 				document.getElementById("url").value = window.location.href
 
 				if (!/:html/.test(window.location.href))
@@ -296,9 +320,13 @@
 					if (target != window.location.pathname)
 						window.location.href = target
 				}
+
+				if (window.location.href.includes(':engine=jina')) {
+					document.querySelector('.jina-format-select').style.display = 'block';
+				}
 			//]]>
 			</script>
-		</body>
+			</body>
 		</html>
 	</xsl:template>
 </xsl:stylesheet>

@@ -1,0 +1,42 @@
+[project]
+name = "morss"
+version = "20250117.1035"
+description = "Get full-text RSS feeds"
+authors = [
+    { name = "Bubu", email = "carr0t-bu@outlook.com" },
+    { name = "pictuga", email = "contact@pictuga.com" },
+]
+dependencies = [
+    "setuptools>=75.8.0",
+    "bs4",
+    "chardet",
+    "lxml",
+    "python-dateutil",
+    "mistune>=3.1.0",
+    "requests>=2.32.3",
+]
+requires-python = ">=2.7"
+readme = "README.md"
+license = { text = "AGPL v3" }
+
+
+[project.urls]
+Homepage = "http://morss.it/"
+Source = "https://git.pictuga.com/pictuga/morss"
+"Bug Tracker" = "https://github.com/pictuga/morss/issues"
+
+[project.optional-dependencies]
+full = ["diskcache", "gunicorn", "redis", "setproctitle"]
+dev = ["pyenchant", "pylint", "pytest", "pytest-cov"]
+
+[project.scripts]
+morss = "morss.__main__:main"
+[tool.pdm]
+distribution = false
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.poetry.dependencies]
+markdown = "^3.4.1"
